@@ -5,16 +5,28 @@ import { Button } from "./Button";
 import ButtonStory from "./Button.story";
 import ButtonStorySource from "!!raw-loader!./Button.story";
 
+const decorators = [
+  (Story) => (
+    <div style={{ padding: "3em", background: "gray" }}>
+      <Story />
+    </div>
+  ),
+  (Story) => (
+    <div style={{ padding: "3em", background: "darkgray" }}>
+      <Story />
+    </div>
+  ),
+];
+
 export default {
   title: "Example/Button",
   component: Button,
-  decorators: [
-    (Story) => (
-      <div style={{ padding: "3em", background: "gray" }}>
-        <Story />
-      </div>
-    ),
-  ],
+  decorators,
+  parameters: {
+    reactRunner: {
+      decorators,
+    },
+  },
 };
 
 export const Primary = () => <Button primary label="Button" />;

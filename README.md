@@ -37,6 +37,7 @@ export const parameters = {
     language, // defautls to `jsx`, set to `tsx` to support typescript
     theme, // https://github.com/FormidableLabs/prism-react-renderer#theming
     readOnly, // code editor will be readonly if set to `true`
+    decorators, // read decorators section below
   },
 };
 ```
@@ -81,6 +82,7 @@ Complex.parameters = {
 ```
 
 `Button.story.js`
+
 ```js
 import { useState } from "react";
 import { Button } from "./Button";
@@ -98,3 +100,28 @@ export default function Counter() {
 }
 ```
 
+### Decorators
+
+This addon only works with global decorators, for component or story decorators, you have to add to `parameters.reactRunner.decorators`, and only simple wrapper like decorators will be supported
+
+```jsx
+const decorators = [
+  (Story) => (
+    <YourProvider>
+      <Story />
+    </YourProvider>
+  ),
+];
+
+export default {
+  title: "Example/Button",
+  component: Button,
+  // for stories disabled this addon
+  decorators,
+  parameters: {
+    reactRunner: {
+      decorators,
+    },
+  },
+};
+```

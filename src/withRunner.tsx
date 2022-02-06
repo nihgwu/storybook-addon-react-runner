@@ -15,7 +15,7 @@ export const withRunner = makeDecorator({
   parameterName: PARAM_KEY,
   wrapper: (storyFn, context) => {
     const storySource: StorySource = context.parameters[SOURCE_KEY];
-    const options: Options = context.parameters[PARAM_KEY];
+    const options: Options = context.parameters[PARAM_KEY] || {};
 
     const [code, setCode] = useState(storySource?.source || "");
     useChannel({
@@ -32,11 +32,18 @@ export const withRunner = makeDecorator({
       return storyFn(context);
     }
 
-    return (
+    const preview = (
       <Preview
         code={hasArgs ? code.replace(/^\(args\)/, "()") : code}
         scope={scope}
       />
+    );
+
+    if (!options.decorators || options.decorators.length === 0) return preview;
+
+    return options.decorators.reduce(
+      (acc, item) => item(() => acc, context as any),
+      preview
     );
   },
 });
