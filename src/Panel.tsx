@@ -25,6 +25,7 @@ export const Panel = (props: PanelProps) => {
     <AddonPanel {...props}>
       {!!source && (
         <CodeEditor
+          key={source}
           theme={options?.theme}
           language={options?.language}
           readOnly={options?.readOnly}

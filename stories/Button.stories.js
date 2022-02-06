@@ -1,5 +1,9 @@
 import React from "react";
+import { createRequire } from "react-runner";
+
 import { Button } from "./Button";
+import ButtonStory from "./Button.story";
+import ButtonStorySource from "!!raw-loader!./Button.story";
 
 export default {
   title: "Example/Button",
@@ -33,7 +37,7 @@ Large.args = {
 export const Small = Template.bind({});
 Small.args = {
   size: "small",
-  label: "Args (readOnnly",
+  label: "Args (readOnnly)",
 };
 Small.parameters = {
   reactRunner: {
@@ -47,3 +51,26 @@ Small.decorators = [
     </div>
   ),
 ];
+
+export const Source = {
+  parameters: {
+    storySource: {
+      source: `<Button label="Source code" />`,
+    },
+  },
+};
+
+export const Complex = ButtonStory;
+Complex.parameters = {
+  storySource: {
+    source: ButtonStorySource,
+  },
+  reactRunner: {
+    scope: {
+      require: createRequire({
+        react: React,
+        "./Button": { Button },
+      }),
+    },
+  },
+};

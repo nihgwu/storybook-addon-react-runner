@@ -42,3 +42,59 @@ export const parameters = {
 ```
 
 You can change configuration [based on story or component](https://storybook.js.org/docs/react/writing-stories/parameters)
+
+## Usage
+
+Write your stories in your favourite way or with source code directly
+
+```js
+export const Source = {
+  parameters: {
+    storySource: {
+      source: `<Button label="Source code" />`,
+    },
+  },
+};
+```
+
+Or even real example with import statement
+
+```js
+import ButtonStory from "./Button.story";
+import ButtonStorySource from "!!raw-loader!./Button.story";
+
+export const Complex = ButtonStory;
+Complex.parameters = {
+  storySource: {
+    source: ButtonStorySource,
+  },
+  reactRunner: {
+    // you can define your scope in `.storybook/preview.js`
+    scope: {
+      require: createRequire({
+        react: React,
+        "./Button": { Button },
+      }),
+    },
+  },
+};
+```
+
+`Button.story.js`
+```js
+import { useState } from "react";
+import { Button } from "./Button";
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <>
+      <div>{count}</div>
+      <Button label="+" onClick={() => setCount((count) => count + 1)} />
+      <Button label="-" onClick={() => setCount((count) => count - 1)} />
+    </>
+  );
+}
+```
+

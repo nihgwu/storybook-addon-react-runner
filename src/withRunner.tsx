@@ -17,7 +17,7 @@ export const withRunner = makeDecorator({
     const storySource: StorySource = context.parameters[SOURCE_KEY];
     const options: Options = context.parameters[PARAM_KEY];
 
-    const [code, setCode] = useState(storySource.source);
+    const [code, setCode] = useState(storySource?.source || "");
     useChannel({
       [EVENTS.SET_CODE]: setCode,
     });
@@ -28,7 +28,7 @@ export const withRunner = makeDecorator({
       return { ...options.scope, args: context.args };
     }, [options.scope, context.args, hasArgs]);
 
-    if (options.disable || !storySource.source) {
+    if (options.disable || !storySource) {
       return storyFn(context);
     }
 
