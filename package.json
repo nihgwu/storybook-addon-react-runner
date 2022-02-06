@@ -1,17 +1,21 @@
 {
-  "name": "storybook-addon-kit",
+  "name": "storybook-addon-react-runner",
   "version": "0.0.0",
-  "description": "everything you need to build a Storybook addon",
+  "description": "Storybook addon to provide react live preview powered by react-runner",
   "keywords": [
     "storybook-addons",
-    "style",
-    "test"
+    "react",
+    "component",
+    "preview",
+    "runner",
+    "live"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/storybookjs/storybook-addon-kit"
+    "url": "https://github.com/nihgwu/storybook-addon-react-runner"
   },
-  "author": "winkerVSbecks",
+  "homepage": "https://nihgwu.github.io/storybook-addon-react-runner",
+  "author": "Neo Nie <nihgwu@live.com>",
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -35,9 +39,14 @@
     "storybook": "start-storybook -p 6006",
     "start": "concurrently \"yarn build:watch\" \"yarn storybook -- --no-manager-cache --quiet\"",
     "build-storybook": "build-storybook",
+    "deploy-storybook": "gh-pages -d storybook-static",
     "prerelease": "zx scripts/prepublish-checks.mjs",
     "release": "yarn build && auto shipit",
     "eject-ts": "zx scripts/eject-typescript.mjs"
+  },
+  "dependencies": {
+    "react-live-runner": "^1.0.0-rc.1",
+    "react-runner": "^1.0.0-rc.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",
@@ -52,6 +61,7 @@
     "boxen": "^5.0.1",
     "concurrently": "^6.2.0",
     "dedent": "^0.7.0",
+    "gh-pages": "^3.2.3",
     "prettier": "^2.3.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
@@ -81,12 +91,10 @@
     "access": "public"
   },
   "storybook": {
-    "displayName": "Addon Kit",
+    "displayName": "React Runner",
     "supportedFrameworks": [
-      "react",
-      "vue",
-      "angular"
+      "react"
     ],
-    "icon": "https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png"
+    "icon": "https://raw.githubusercontent.com/nihgwu/storybook-addon-react-runner/main/logo.png"
   }
 }

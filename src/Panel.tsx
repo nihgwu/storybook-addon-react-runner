@@ -1,36 +1,37 @@
 import React from "react";
-import { useAddonState, useChannel } from "@storybook/api";
+import { addons } from "@storybook/addons";
+import { useParameter } from "@storybook/api";
 import { AddonPanel } from "@storybook/components";
-import { ADDON_ID, EVENTS } from "./constants";
-import { PanelContent } from "./components/PanelContent";
+import { EVENTS, PARAM_KEY, SOURCE_KEY } from "./constants";
+import { CodeEditor } from "./components/CodeEditor";
 
-interface PanelProps {
+import { Options, StorySource } from "./types";
+
+const handleChange = (code: string) => {
+  addons.getChannel().emit(EVENTS.SET_CODE, code);
+};
+
+type PanelProps = {
+  key: string;
   active: boolean;
-}
+};
 
-export const Panel: React.FC<PanelProps> = (props) => {
-  // https://storybook.js.org/docs/react/addons/addons-api#useaddonstate
-  const [results, setState] = useAddonState(ADDON_ID, {
-    danger: [],
-    warning: [],
-  });
-
-  // https://storybook.js.org/docs/react/addons/addons-api#usechannel
-  const emit = useChannel({
-    [EVENTS.RESULT]: (newResults) => setState(newResults),
-  });
+export const Panel = (props: PanelProps) => {
+  const source =
+    useParameter<StorySource | undefined>(SOURCE_KEY)?.source || "";
+  const options = useParameter<Options | undefined>(PARAM_KEY);
 
   return (
     <AddonPanel {...props}>
-      <PanelContent
-        results={results}
-        fetchData={() => {
-          emit(EVENTS.REQUEST);
-        }}
-        clearData={() => {
-          emit(EVENTS.CLEAR);
-        }}
-      />
+      {!!source && (
+        <CodeEditor
+          disabled={options?.disabled}
+          // @ts-expect-error
+          padding="1rem"
+          defaultValue={source}
+          onChange={handleChange}
+        />
+      )}
     </AddonPanel>
   );
 };
