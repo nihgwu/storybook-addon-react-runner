@@ -29,13 +29,14 @@ import * as components from "../your-components";
 
 export const parameters = {
   reactRunner: {
-    disabled, // whether to disable live edit by default
+    disable, // whether to disable the addon
     scope: {
       ...components,
       ...otherScope,
     },
     language, // defautls to `jsx`, set to `tsx` to support typescript
     theme, // https://github.com/FormidableLabs/prism-react-renderer#theming
+    readOnly, // code editor will be readonly if set to `true`
   },
 };
 ```

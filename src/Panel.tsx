@@ -25,7 +25,9 @@ export const Panel = (props: PanelProps) => {
     <AddonPanel {...props}>
       {!!source && (
         <CodeEditor
-          disabled={options?.disabled}
+          theme={options?.theme}
+          language={options?.language}
+          readOnly={options?.readOnly}
           // @ts-expect-error
           padding="1rem"
           defaultValue={source}

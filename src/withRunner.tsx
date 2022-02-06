@@ -1,23 +1,42 @@
 import React from "react";
-import { StoryFn, StoryContext, useState, useChannel } from "@storybook/addons";
+import {
+  makeDecorator,
+  useChannel,
+  useState,
+  useMemo,
+} from "@storybook/addons";
 
 import { Preview } from "./components/Preview";
 import { EVENTS, PARAM_KEY, SOURCE_KEY } from "./constants";
 import { Options, StorySource } from "./types";
 
-export const withRunner = (storyFn: StoryFn, context: StoryContext) => {
-  const [code, setCode] = useState(
-    (context.parameters[SOURCE_KEY] as StorySource).source
-  );
-  useChannel({
-    [EVENTS.SET_CODE]: setCode,
-  });
+export const withRunner = makeDecorator({
+  name: "withRunner",
+  parameterName: PARAM_KEY,
+  wrapper: (storyFn, context) => {
+    const storySource: StorySource = context.parameters[SOURCE_KEY];
+    const options: Options = context.parameters[PARAM_KEY];
 
-  const options: Options = context.parameters[PARAM_KEY];
-  if (options.disabled) {
-    // @ts-expect-error
-    return storyFn(context);
-  }
+    const [code, setCode] = useState(storySource.source);
+    useChannel({
+      [EVENTS.SET_CODE]: setCode,
+    });
 
-  return <Preview code={code} scope={options.scope} />;
-};
+    const hasArgs = code.startsWith("(args)");
+    const scope = useMemo(() => {
+      if (!hasArgs) return options.scope;
+      return { ...options.scope, args: context.args };
+    }, [options.scope, context.args, hasArgs]);
+
+    if (options.disable || !storySource.source) {
+      return storyFn(context);
+    }
+
+    return (
+      <Preview
+        code={hasArgs ? code.replace(/^\(args\)/, "()") : code}
+        scope={scope}
+      />
+    );
+  },
+});

@@ -1,6 +1,6 @@
 import { addons, types } from "@storybook/addons";
 
-import { ADDON_ID, PANEL_ID } from "../constants";
+import { ADDON_ID, PANEL_ID, PARAM_KEY } from "../constants";
 import { Panel } from "../Panel";
 
 addons.register(ADDON_ID, () => {
@@ -9,5 +9,6 @@ addons.register(ADDON_ID, () => {
     title: "Live Code",
     match: ({ viewMode }) => viewMode === "story",
     render: Panel,
+    paramKey: PARAM_KEY,
   });
 });
