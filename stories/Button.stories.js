@@ -24,7 +24,11 @@ export default {
   decorators,
   parameters: {
     reactRunner: {
-      decorators,
+      wrapper: ({ children }) => (
+        <div style={{ padding: "3em", background: "gray" }}>
+          {children}
+        </div>
+      ),
     },
   },
 };

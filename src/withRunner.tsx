@@ -39,11 +39,8 @@ export const withRunner = makeDecorator({
       />
     );
 
-    if (!options.decorators || options.decorators.length === 0) return preview;
-
-    return options.decorators.reduce(
-      (acc, item) => item(() => acc, context as any),
-      preview
-    );
+    const Wrapper = options.wrapper;
+    if (Wrapper) return <Wrapper>{preview}</Wrapper>;
+    return preview;
   },
 });
