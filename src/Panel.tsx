@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import { addons } from "@storybook/addons";
 import { useParameter } from "@storybook/api";
 import { AddonPanel } from "@storybook/components";
@@ -10,6 +10,8 @@ import { Options, StorySource } from "./types";
 const handleChange = (code: string) => {
   addons.getChannel().emit(EVENTS.SET_CODE, code);
 };
+
+const stopPropagation = (event: SyntheticEvent) => event.stopPropagation();
 
 type PanelProps = {
   key: string;
@@ -33,6 +35,8 @@ export const Panel = (props: PanelProps) => {
           padding="1rem"
           defaultValue={source}
           onChange={handleChange}
+          // prevent sidebar stories navigation
+          onKeyDown={stopPropagation}
         />
       )}
     </AddonPanel>
