@@ -72,10 +72,10 @@ Complex.parameters = {
   reactRunner: {
     // you can define your scope in `.storybook/preview.js`
     scope: {
-      require: createRequire({
+      import: {
         react: React,
         "./Button": { Button },
-      }),
+      },
     },
   },
 };
@@ -110,7 +110,7 @@ export default {
   component: Button,
   parameters: {
     reactRunner: {
-      wrapper: YourProvider
+      wrapper: YourProvider,
     },
   },
 };

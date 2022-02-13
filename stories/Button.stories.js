@@ -1,5 +1,4 @@
 import React from "react";
-import { createRequire } from "react-runner";
 
 import { Button } from "./Button";
 import ButtonStory from "./Button.story";
@@ -83,10 +82,10 @@ Complex.parameters = {
   },
   reactRunner: {
     scope: {
-      require: createRequire({
+      import: {
         react: React,
         "./Button": { Button },
-      }),
+      },
     },
   },
 };

@@ -31,7 +31,6 @@ export const Panel = (props: PanelProps) => {
           theme={options?.theme}
           language={options?.language}
           readOnly={options?.readOnly}
-          // @ts-expect-error
           padding="1rem"
           defaultValue={source}
           onChange={handleChange}
