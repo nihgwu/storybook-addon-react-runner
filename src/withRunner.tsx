@@ -10,6 +10,8 @@ import { Preview } from "./components/Preview";
 import { EVENTS, PARAM_KEY, SOURCE_KEY } from "./constants";
 import { Options, StorySource } from "./types";
 
+const argsRegexp = /^(\s*)(args|\(args\))(\W+)/;
+
 export const withRunner = makeDecorator({
   name: "withRunner",
   parameterName: PARAM_KEY,
@@ -22,7 +24,7 @@ export const withRunner = makeDecorator({
       [EVENTS.SET_CODE]: setCode,
     });
 
-    const hasArgs = code.startsWith("(args)");
+    const hasArgs = argsRegexp.test(code);
     const scope = useMemo(() => {
       if (!hasArgs) return options.scope;
       return { ...options.scope, args: context.args };
@@ -34,7 +36,7 @@ export const withRunner = makeDecorator({
 
     const preview = (
       <Preview
-        code={hasArgs ? code.replace(/^\(args\)/, "()") : code}
+        code={hasArgs ? code.replace(argsRegexp, "$1()$3") : code}
         scope={scope}
       />
     );

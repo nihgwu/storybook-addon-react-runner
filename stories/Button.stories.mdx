@@ -9,9 +9,19 @@ import { Button } from "./Button";
 With `MDX`, we can define a story for `Button` right in the middle of our Markdown documentation.
 
 <Canvas>
-  <Story name="Primary" format>
-    <form>
-      <Button primary label="Button" />
-    </form>
+  <Story name="Primary">
+    <Button primary label="Button" />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story
+    name="Args"
+    args={{
+      primary: true,
+      label: "Button",
+    }}
+  >
+    {(args) => <Button {...args} />}
   </Story>
 </Canvas>
