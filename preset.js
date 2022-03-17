@@ -6,24 +6,28 @@ function managerEntries(entry = []) {
   return [...entry, require.resolve("./dist/esm/preset/manager")];
 }
 
-module.exports = {
-  managerWebpack: async (config) => {
+async function configWebpack(config, { presets }) {
+  const version = await presets.apply("webpackVersion");
+  if (version === '5') {
     config.module.rules.push({
       test: /\.mjs$/,
-      include: /node_modules/,
+      resolve: {
+        fullySpecified: false,
+      }
+    });
+  } else {
+    config.module.rules.push({
+      test: /\.mjs$/,
       type: "javascript/auto",
     });
+  }
 
-    return config;
-  },
-  webpackFinal: async (config) => {
-    config.module.rules.push({
-      test: /\.mjs$/,
-      include: /node_modules/,
-      type: "javascript/auto",
-    });
-    return config;
-  },
+  return config;
+}
+
+module.exports = {
+  managerWebpack: configWebpack,
+  webpackFinal: configWebpack,
   managerEntries,
   config,
 };
