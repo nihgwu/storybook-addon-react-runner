@@ -8766,13 +8766,13 @@ react-is@^16.13.1, react-is@^16.7.0, react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-live-runner@^1.0.0-rc.2:
-  version "1.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/react-live-runner/-/react-live-runner-1.0.0-rc.2.tgz#68fcab1738110e4aca34dadcac633b7708447bf5"
-  integrity sha512-R0kIdKU0pmtXrk9E6a2yAOJ7Pj7dqh/jDGdNcu/pmrxt5ig8GWOZ2s4sFGnD1hVl7uB4Sci47eKcqhBnEqcmVw==
+react-live-runner@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-live-runner/-/react-live-runner-1.0.1.tgz#de73297f45a9953c71d8461b90cdccc1248fe1a1"
+  integrity sha512-Qn+bLrS1lc8JEZZRrrtZ3wtETFXq49EE+/BAP8GQFu64/FxApMXpHNDHkXJFyfN1jcTEvKprOJEskio19911GA==
   dependencies:
     prism-react-renderer "^1.2.1"
-    react-runner "^1.0.0-rc.2"
+    react-runner "^1.0.1"
     react-simple-code-editor "^0.11.0"
 
 react-popper-tooltip@^3.1.1:
@@ -8812,12 +8812,12 @@ react-router@6.2.1, react-router@^6.0.0:
   dependencies:
     history "^5.2.0"
 
-react-runner@^1.0.0-rc.2:
-  version "1.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/react-runner/-/react-runner-1.0.0-rc.2.tgz#3591d3893a6262af345154292627e76612968850"
-  integrity sha512-caUnpbSawzX1cF7f38tmM9+CMDNZNUypIeYPROWKW5UALmo28pfHrad7XL2HRbTku76hiGE60Kxp6CWItW1jRg==
+react-runner@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-runner/-/react-runner-1.0.1.tgz#2d69656c2d9ab58ec15ff8ae6436a04dd49bd34b"
+  integrity sha512-gA/8ACiGJqqUNczzcowNgRfSTtPh/yuCoz/afiL3FZioaQsfxMYZK6yVEJ+b86hO9FcfqfpBlAOHMEsdHwjy5w==
   dependencies:
-    sucrase "^3.10.1"
+    sucrase-esm "^3.21.0"
 
 react-simple-code-editor@^0.11.0:
   version "0.11.0"
@@ -9871,10 +9871,10 @@ style-to-object@0.3.0, style-to-object@^0.3.0:
   dependencies:
     inline-style-parser "0.1.1"
 
-sucrase@^3.10.1:
-  version "3.20.3"
-  resolved "https://registry.yarnpkg.com/sucrase/-/sucrase-3.20.3.tgz#424f1e75b77f955724b06060f1ae708f5f0935cf"
-  integrity sha512-azqwq0/Bs6RzLAdb4dXxsCgMtAaD2hzmUr4UhSfsxO46JFPAwMnnb441B/qsudZiS6Ylea3JXZe3Q497lsgXzQ==
+sucrase-esm@^3.21.0:
+  version "3.21.0"
+  resolved "https://registry.yarnpkg.com/sucrase-esm/-/sucrase-esm-3.21.0.tgz#acf772b2e168594de72caa04dbfc19706ded8e62"
+  integrity sha512-RwdsUJFawSrj9jPuQyZpGHW/WwXc5xcUosGCuthPAJdOn/8GPdErDCbJTN9uCWBzcaxpmMxS6PwY3cLXY0VPjw==
   dependencies:
     commander "^4.0.0"
     glob "7.1.6"
