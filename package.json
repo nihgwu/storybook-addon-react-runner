@@ -1,6 +1,6 @@
 {
   "name": "storybook-addon-react-runner",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Storybook addon to provide react live preview powered by react-runner",
   "keywords": [
     "storybook-addons",
