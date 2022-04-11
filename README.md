@@ -44,6 +44,8 @@ export const parameters = {
 
 You can change configuration [based on story or component](https://storybook.js.org/docs/react/writing-stories/parameters)
 
+> Note: [HMR (hot module replacement) won't work](https://github.com/nihgwu/storybook-addon-react-runner/issues/3) if you set `scope` via global parameters, a full reload will be performed
+
 ## Usage
 
 Write your stories in your favourite way or with source code directly
