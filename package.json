@@ -46,8 +46,8 @@
     "eject-ts": "zx scripts/eject-typescript.mjs"
   },
   "dependencies": {
-    "react-live-runner": "^1.0.1",
-    "react-runner": "^1.0.1"
+    "react-live-runner": "^1.0.2",
+    "react-runner": "^1.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",
