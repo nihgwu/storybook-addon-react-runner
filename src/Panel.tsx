@@ -8,6 +8,8 @@ import { CodeEditor } from "./components/CodeEditor";
 import { Options, StorySource } from "./types";
 
 const handleChange = (code: string) => {
+  let encodeSource = btoa(code);
+  window.location.hash = encodeSource;
   addons.getChannel().emit(EVENTS.SET_CODE, code);
 };
 
@@ -19,10 +21,14 @@ type PanelProps = {
 };
 
 export const Panel = (props: PanelProps) => {
-  const source =
-    useParameter<StorySource | undefined>(SOURCE_KEY)?.source || "";
+  let source = useParameter<StorySource | undefined>(SOURCE_KEY)?.source || "";
   const options = useParameter<Options | undefined>(PARAM_KEY);
-
+  let fromHash = window.location.hash.split("#")[1];
+  if (fromHash && fromHash.length > 0) {
+    let decodeSource = atob(fromHash);
+    source = decodeSource;
+    addons.getChannel().emit(EVENTS.SET_CODE, source);
+  }
   return (
     <AddonPanel {...props}>
       {!!source && (
